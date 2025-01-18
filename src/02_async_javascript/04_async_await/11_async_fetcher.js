@@ -10,9 +10,19 @@ Requirements:
 - Use setTimeout to implement the delay
 - use async/await and fetch to get the data from the URL and parse it as JSON.
 */
+
+const delayFn = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+
 async function fetchData(url, delay = 0) {
-    // Implement this function
-    // const response = await fetch(url);
+  try {
+    await delayFn(delay);
+    const response = await fetch(url);
+    const data = response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching : ", error);
+    throw error; // re-throw the error for the caller to handle
+  }
 }
 
 module.exports = fetchData;

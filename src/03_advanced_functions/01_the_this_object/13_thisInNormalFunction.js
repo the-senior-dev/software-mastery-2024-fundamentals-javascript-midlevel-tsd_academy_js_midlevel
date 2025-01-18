@@ -14,9 +14,21 @@ Requirements:
 // !!! Check the tests of this function to understand the this object value in arrow functions!!!
 
 function objectManipulator(obj, multiply) {
+  // Direct call to multiply
+  let directCallResult;
+  try {
+    directCallResult = multiply(); // `this` is undefined in strict mode
+  } catch (error) {
+    directCallResult = NaN; // Fallback for strict mode
+  }
 
+  // Method call with `this` bound to obj
+  const methodCallResult = multiply.call(obj);
+
+  // Return the results
+  return [directCallResult, methodCallResult];
 }
 
 module.exports = objectManipulator;
 
-
+module.exports = objectManipulator;
