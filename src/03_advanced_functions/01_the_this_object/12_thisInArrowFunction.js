@@ -16,8 +16,20 @@ Requirements:
 - return an array of the two results
 */
 
-function exploreThisInArrowFunction(arrowFunc, regularFunc) {
-    // Implement this function
+const arrow = () => this?.name;
+function regular() {
+  return this?.name;
 }
+
+function exploreThisInArrowFunction(arrowFunc, regularFunc) {
+  const person = {
+    name: "John Smith",
+    arrowFunc: arrowFunc,
+    regularFunc: regularFunc,
+  };
+  return [person.arrowFunc(), person.regularFunc()];
+}
+
+exploreThisInArrowFunction(arrow, regular);
 
 module.exports = exploreThisInArrowFunction;

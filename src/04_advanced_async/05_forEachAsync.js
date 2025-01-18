@@ -11,7 +11,9 @@ and wait for each callback to execute before moving on to the next.
 */
 
 async function forEachAsync(array, callback) {
-    // Implement this function
+  for (let i = 0; i < array.length; i++) {
+    await callback(array[i], i, array);
+  }
 }
 
 module.exports = forEachAsync;

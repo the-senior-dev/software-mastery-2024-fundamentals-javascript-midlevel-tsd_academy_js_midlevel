@@ -1,9 +1,9 @@
 /* Higher-Order Functions
-Exercise: Create a Higher-Order Function named timeExecution
-Your task is to create a higher-order function named timeExecution that takes 
-a function as an argument and returns a new function. When the new function is called, 
-it should measure the time taken for the argument function to execute 
-and then return that time along with the result of the function.
+- Create a higher-order function named timeExecution 
+- It takes a function as an argument and returns a new function. 
+- When the new function is called
+    - It should measure the time taken for the argument function to execute 
+    - Return that time along with the result of the function.
 
 Requirements:
 - the function timeExecution should accept a function fn as its parameter.
@@ -19,8 +19,14 @@ console.log(output); // Output should be something like { result: 7, time: 0.123
 */
 
 function timeExecution(fn) {
-    // Your code here
-}
+  return function measure(...args) {
+    let startTime = performance.now(); // record the start time
+    let fnResult = fn(...args); // call the passed in function
+    let endTime = performance.now(); // set the end time
+    let timeTaken = endTime - startTime;
 
+    return { result: fnResult, time: timeTaken };
+  };
+}
 
 module.exports = timeExecution;
